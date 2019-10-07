@@ -1,0 +1,34 @@
+# This is example setting (Sorry... no check)
+# Please set Ansible Vault, if you custom for your site.
+all:
+  hosts:
+    Windows:
+      ansible_host:           '192.168.1.111'
+      product_id:             ''
+
+
+
+
+  vars:
+    ansible_port:             '5985'
+    ansible_connection:       'winrm'
+    ansible_winrm_scheme:     'http'
+    ansible_winrm_server_cert_validation: ignore
+
+
+    # Login 
+    ###################################
+    ansible_user:             'Administrator'
+    ansible_password:         'Changeme-86'
+
+    # Network Configure
+    ###################################
+    interface_name:           'イーサネット'
+    def_gateway:              '192.168.1.12'
+    prefix:                   '24'    
+    primary_dns:              '8.8.8.8'
+    secondary_dns:            '8.8.4.4'
+
+
+
+

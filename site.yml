@@ -1,0 +1,11 @@
+##############################################
+# Cloning Deployed Template
+##############################################
+- hosts: all
+  gather_facts: yes
+  roles:
+    - Firewall
+    - Pagefile
+    - RDP
+    #- Network_interface
+    - WinFeature

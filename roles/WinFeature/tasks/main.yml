@@ -1,0 +1,25 @@
+- name: Install IIS (Web-Server only)
+  win_feature:
+    name: Web-Server
+    state: absent
+
+- name: Facts Feature
+  win_command: powershell.exe -
+  args:
+    stdin: Get-WindowsFeature
+  register: result
+
+- name: Create log dir
+  delegate_to: localhost
+  file:
+    path: "./{{ inventory_hostname }}/"
+    state: directory
+    mode: 755
+
+- name: Out File
+  delegate_to: localhost
+  copy:
+    content: "{{ report }}"
+    dest: "./{{ inventory_hostname }}/WinFeature.log "
+  vars: 
+    report: "{{ result.stdout_lines | to_nice_yaml }}"

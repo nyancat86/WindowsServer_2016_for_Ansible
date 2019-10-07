@@ -1,0 +1,15 @@
+- name: Load current Interface
+  debug:
+    msg: '{{ ansible_interfaces }}'
+
+
+- name: Set-IP_address
+  win_command: powershell.exe -
+  args:
+    stdin: "Get-NetAdapter -Name {{ interface_name }} | Set-NetIPAddress -AddressFamily IPv4 -IPAddress {{ ansible_host }} -PrefixLength {{ prefix }}"
+
+
+- name: Set-DNS
+  win_command: powershell.exe -
+  args:
+    stdin: Get-NetAdapter -Name "{{ interface_name }}" | Set-DnsClientServerAddress -ServerAddresses "{{primary_dns}}","{{secondary_dns}}"
