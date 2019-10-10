@@ -1,7 +1,7 @@
 - name: Install IIS (Web-Server only)
   win_feature:
     name: Web-Server
-    state: absent
+    state: present
 
 - name: Facts Feature
   win_command: powershell.exe -

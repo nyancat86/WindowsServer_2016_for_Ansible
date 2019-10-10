@@ -4,8 +4,12 @@
 - hosts: all
   gather_facts: yes
   roles:
-    - Firewall
-    - Pagefile
-    - RDP
+    #- win_firewall
+    #- win_pagefile
+    #- win_rdp
     #- Network_interface
-    - WinFeature
+    #- win_feature
+    #- win_timezone
+    #- win_IPv6
+    - win_UAC
+    - win_IE_ECS
