@@ -1,8 +1,7 @@
 - name: Control Firewall Setting (Enabled)
   win_firewall:
-    state: disabled
+    state: enabled
     profiles:
     - Domain
     - Private
     - Public
-  tags: enable_firewall

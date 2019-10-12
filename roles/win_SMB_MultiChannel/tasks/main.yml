@@ -1,0 +1,5 @@
+---
+- name: SMB MultiChannel
+  win_command: powershell.exe -
+  args:
+    stdin: "Set-Smb{{ smb_state }}Configuration -EnableMultiChannel ${{ smb_target }}"

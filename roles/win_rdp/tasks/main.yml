@@ -1,4 +1,7 @@
 - name: Enable RDP service
   win_command: powershell.exe -
   args:
-    stdin: reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d "0" /f
+    #stdin: reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d "0" /f
+    stdin: 
+      - Set-Service MapsBroker -StartupType Disabled
+      - Set-Service iphlpsvc -StartType Disabled

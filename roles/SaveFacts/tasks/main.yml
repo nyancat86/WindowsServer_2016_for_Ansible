@@ -1,0 +1,7 @@
+- name: Out File
+  delegate_to: localhost
+  copy:
+    content: "{{ report }}"
+    dest: "./{{ inventory_hostname }}/Facts.log "
+  vars: 
+    report: "{{ ansible_facts.*.stdout_lines }}"
