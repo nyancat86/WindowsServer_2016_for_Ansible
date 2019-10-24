@@ -1,7 +1,9 @@
-- name: Enable RDP service
+- name: MapsBroker Settig
   win_command: powershell.exe -
   args:
-    #stdin: reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d "0" /f
-    stdin: 
-      - Set-Service MapsBroker -StartupType Disabled
-      - Set-Service iphlpsvc -StartType Disabled
+    stdin: "Set-Service MapsBroker -StartupType Disabled"
+
+# - name: iphlpsvc Setting
+#   win_command: powershell.exe -
+#   args:
+#     stdin: "Set-Service iphlpsvc -StartType Disabled"

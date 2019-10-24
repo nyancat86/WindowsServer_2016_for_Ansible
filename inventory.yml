@@ -1,79 +1,55 @@
 # This is example setting (Sorry... no check)
 # Please set Ansible Vault, if you custom for your site.
 all:
-  hosts:
+  children:
     Windows:
-      ansible_host:           '192.168.1.10'
-      product_id:             ''
-      ansible_host:           '192.168.1.11'
-      product_id:             ''
-      ansible_host:           '192.168.1.12'
-      product_id:             ''
-      ansible_host:           '192.168.1.13'
-      product_id:             ''
-      ansible_host:           '192.168.1.14'
-      product_id:             ''
-      ansible_host:           '192.168.1.15'
-      product_id:             ''
-      ansible_host:           '192.168.1.16'
-      product_id:             ''
-      ansible_host:           '192.168.1.17'
-      product_id:             ''
-      ansible_host:           '192.168.1.18'
-      product_id:             ''
-      ansible_host:           '192.168.1.19'
-      product_id:             ''
-      ansible_host:           '192.168.1.20'
-      product_id:             ''
-      ansible_host:           '192.168.1.21'
-      product_id:             ''
-      ansible_host:           '192.168.1.22'
-      product_id:             ''
-      ansible_host:           '192.168.1.23'
-      product_id:             ''
-      ansible_host:           '192.168.1.24'
-      product_id:             ''
-      ansible_host:           '192.168.1.25'
-      product_id:             ''
-      ansible_host:           '192.168.1.26'
-      product_id:             ''
-      ansible_host:           '192.168.1.27'
-      product_id:             ''
-      ansible_host:           '192.168.1.28'
-      product_id:             ''
-      ansible_host:           '192.168.1.29'
-      product_id:             ''
-      ansible_host:           '192.168.1.30'
-      product_id:             ''
- 
- 
-  vars:
-    ansible_port:             '5985'
-    ansible_connection:       'winrm'
-    ansible_winrm_scheme:     'http'
-    ansible_winrm_server_cert_validation: ignore
+      hosts:
+        Windows-123:
+          ansible_host:           '192.168.1.123'
+          product_id:             ''
+        Windows-10:
+          ansible_host:           '192.168.1.10'
+          product_id:             ''
+
+      vars:
+        ansible_port:             '5985'
+        ansible_connection:       'winrm'
+        ansible_winrm_scheme:     'http'
+        ansible_winrm_server_cert_validation: ignore
 
 
-    power_plan_state: "high performance"  # "high performance" / "Balanced" / "Power saver"
+        # SMB Multi Channel
+        ###################################
+        smb_state:                'Server'           # Server or Client 
+        smb_target:               'true'             # boolean
 
+        # Login (Custom Image Password)
+        ###################################
+        ansible_user:             'Administrator'
+        ansible_password:         'Changeme-86'
 
-    # SMB Multi Channel
-    ###################################
-    smb_state:                'Server'    # Server or Client
-    smb_target:               'true'      # boolean
+        # PowerStatement
+        ###################################
+        power_plan:               '高パフォーマンス'    # JP:"バランス" "省電力" "高パフォーマンス" 
 
-    # Login 
-    ###################################
-    ansible_user:             'Administrator'
-    ansible_password:         'Changeme-86'
+        # Feature set
+        ###################################
+        windows_feature_set:
+          - name:   "Web-Server"
+            state:  "present"
+          - name:   "Web-Mgmt-Tools"
+            state:  "present"
+          - name:   "Web-Mgmt-Console"
+            state:  "absent"
 
-    # Network Configure
-    ###################################
-    interface_name:           'イーサネット'
-    def_gateway:              '192.168.1.12'
-    prefix:                   '24'    
-    primary_dns:              '8.8.8.8'
-    secondary_dns:            '8.8.4.4'
+,
+        # Network Configure
+        ###################################
+        # interface_name:           'イーサネット'
+        # def_gateway:              '192.168.1.12'
+        # prefix:                   '24'    
+        # primary_dns:              '8.8.8.8'
+        # secondary_dns:            '8.8.4.4'
 
 
 

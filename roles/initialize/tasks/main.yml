@@ -1,0 +1,7 @@
+---
+- name: Create log dir
+  delegate_to: localhost
+  file:
+    path: "{{ inventory_dir }}/Logs/{{ inventory_hostname }}"
+    state: directory
+    mode: 755

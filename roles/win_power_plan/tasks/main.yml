@@ -1,0 +1,13 @@
+---
+- name: Change power plan to high performance
+  win_power_plan:
+    name: "{{ power_plan }}"
+  register: result
+
+- name: Out File
+  delegate_to: localhost
+  copy:
+    content: "{{ report }}"
+    dest: "{{ inventory_dir }}/Logs/{{ inventory_hostname }}/PowerState.log "
+  vars: 
+    report: "{{ result.power_plan_name }}"
